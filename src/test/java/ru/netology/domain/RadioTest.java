@@ -95,4 +95,4 @@ class RadioTest {
         radio.pressMinusVolume();
         assertEquals(3, radio.getCurrentVolume());
     }
-} 
+}
