@@ -1,78 +1,115 @@
 package ru.netology.domain;
+
 public class Radio {
-    private int maxRadioWave = 9;
-    private int minRadioWave = 0;
-    private int currentRadioWave = 0;
-    private int maxSoundLevel = 10;
-    private int minSoundLevel;
-    private int currentSoundLevel;
-    // Radio waves
-    public int getMaxRadioWave() {
-        return maxRadioWave;
-    }
-    public void setMaxRadioWave(int maxRadioWave) {
-        this.maxRadioWave = maxRadioWave;
-    }
-    public int getMinRadioWave() {
-        return minRadioWave;
-    }
-    public void setMinRadioWave(int minRadioWave) {
-        this.minRadioWave = minRadioWave;
-    }
-    public int getCurrentRadioWave() {
-        return currentRadioWave;
-    }
-    public int setCurrentRadioWave(int currentRadioWave) {
-        if (currentRadioWave > maxRadioWave) {
-            currentRadioWave = minRadioWave;
-        }
-        if (currentRadioWave < minRadioWave) {
-            currentRadioWave = maxRadioWave;
-        }
-        this.currentRadioWave = currentRadioWave;
-        return currentRadioWave;
-    }
-    public int currentRadioWaveUp() {
-        return setCurrentRadioWave(currentRadioWave + 1);
-    }
-    public int currentRadioWaveDown() {
-        return setCurrentRadioWave(currentRadioWave - 1);
-    }
-    // Radio sound levels
-    public int getMaxSoundLevel() {
-        return maxSoundLevel;
-    }
-    public void setMaxSoundLevel(int maxSoundLevel) {
-        this.maxSoundLevel = maxSoundLevel;
-    }
-    public int getMinSoundLevel() {
-        return minSoundLevel;
-    }
-    public void setMinSoundLevel(int minSoundLevel) {
-        this.minSoundLevel = minSoundLevel;
-    }
-    public int getCurrentSoundLevel() {
-        return currentSoundLevel;
+    private String name;
+    private int maxVolume = 10;
+    private int minVolume = 0;
+    private int currentVolume;
+    private int maxRadioStation = 9;
+    private int minRadioStation = 0;
+    private int currentRadioStation;
+    private boolean on;
+
+    public String getName() {
+        return name;
     }
 
-        public int setCurrentSoundLevel(int currentSoundLevel) {
-            if (currentSoundLevel > maxSoundLevel) {
-                currentSoundLevel = maxSoundLevel;
-            }
-
-            if (currentSoundLevel < minSoundLevel) {
-                currentSoundLevel = minSoundLevel;
-            }
-            this.currentSoundLevel = currentSoundLevel;
-            return currentSoundLevel;
-        }
-
-        public int currentSoundLevelUp() {
-            return setCurrentSoundLevel(currentSoundLevel + 1);
-        }
-
-        public int currentSoundLevelDown() {
-            return setCurrentSoundLevel(currentSoundLevel - 1);
-        }
-
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public void setMaxVolume(int maxVolume) {
+        this.maxVolume = maxVolume;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    public void setMinVolume(int minVolume) {
+        this.minVolume = minVolume;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            return;
+        }
+        if (currentVolume < minVolume) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public int getMaxRadioStation() {
+        return maxRadioStation;
+    }
+
+    public void setMaxRadioStation(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
+    }
+
+    public int getMinRadioStation() {
+        return minRadioStation;
+    }
+
+    public void setMinRadioStation(int minRadioStation) {
+        this.minRadioStation = minRadioStation;
+    }
+
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
+    }
+
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation > maxRadioStation) {
+            return;
+        }
+        if (currentRadioStation < minRadioStation) {
+            return;
+        }
+        this.currentRadioStation = currentRadioStation;
+    }
+
+    public boolean isOn() {
+        return on;
+    }
+
+    public void setOn(boolean on) {
+        this.on = on;
+    }
+
+
+    public void pressNextStation() {
+        if (currentRadioStation >= maxRadioStation) {
+            setCurrentRadioStation(minRadioStation);
+        } else {
+            setCurrentRadioStation(currentRadioStation + 1);
+        }
+    }
+
+    public void pressPrevStation() {
+        if (currentRadioStation <= minRadioStation) {
+            setCurrentRadioStation(maxRadioStation);
+        } else {
+            setCurrentRadioStation(currentRadioStation - 1);
+        }
+    }
+
+    public void pressPlusVolume() {
+
+        setCurrentVolume(currentVolume + 1);
+    }
+
+    public void pressMinusVolume() {
+
+        setCurrentVolume(currentVolume - 1);
+    }
+}
